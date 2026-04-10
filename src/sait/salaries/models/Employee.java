@@ -1,6 +1,6 @@
 package sait.salaries.models;
 
-public abstract class Employee{
+public abstract class Employee implements Payable{
 	
 	private int employeeID;
 	private String name;
@@ -29,9 +29,4 @@ public abstract class Employee{
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public double calculatePay() {
-		return 0;
-	}
-	
 }
