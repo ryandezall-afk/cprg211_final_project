@@ -1,56 +1,68 @@
 package sait.salaries.models;
 
 /**
-Class: Contractor
-Author: Ryan Dezall
-Date: April 9, 2026
-
-Description: 
-	This class is part of the Salaries Management System, specifically designed to handle data for workers hired on a temporary, flat-rate basis. 
-	Inputs for this specific class include an employee ID, name, the duration of the contract, and the total flat-rate contract amount. 
- 	The processing involves utilizing Object-Oriented inheritance to manage the baseline employee data while securely encapsulating the specific contract details. 
- 	The final output is a complete Contractor object that simply returns the agreed-upon flat rate as their total compensation.
- 	This class overrides the calculatePay method to bypass complex math and simply output the total contract amount.
+ * Class: Contractor
+ * Author: Ryan Dezall
+ * Date: April 11, 2026
+ *
+ * Description:
+ * This class stores and processes payroll information for contractors who are
+ * paid through a flat contract amount. Inputs include the employee ID, name,
+ * contract duration, and total contract amount. The processing uses the shared
+ * Employee base class while applying contractor-specific logic for pay, which
+ * is simply the contract amount itself. The output is a contractor object that
+ * supports polymorphism, CRUD operations, and clean display within the salary
+ * management system.
  */
-
 public class Contractor extends Employee {
-	
-	// specific attributes
-	private int contractDuration;
-	private double totalContractAmount;
-	
-	// default constructor
-	public Contractor() {
-		
-	}
-	
-	// user-defined constructor
-	public Contractor(int employeeID, String name, int contractDuration, double totalContractAmount) {
-		super(employeeID, name);
-		this.contractDuration = contractDuration;
-		this.totalContractAmount = totalContractAmount;
-	}
-	
-	// getters and setters
-	public int getContractDuration() {
-		return contractDuration;
-	}
-	
-	public void setContractDuration(int contractDuration) {
-		this.contractDuration = contractDuration;
-	}
-	
-	public double getTotalContractAmount() {
-		return totalContractAmount;
-	}
-	
-	public void setTotalContractAmount(double totalContractAmount) {
-		this.totalContractAmount = totalContractAmount;
-	}
-	
-	// pay calculation mandated by Payable interface
-	@Override
-	public double calculatePay() {
-		return totalContractAmount;
-	}
+
+    // Attributes specific to contractors.
+    private int contractDuration;
+    private double totalContractAmount;
+
+    // Default constructor.
+    public Contractor() {
+    }
+
+    // User-defined constructor.
+    public Contractor(int employeeID, String name, int contractDuration, double totalContractAmount) {
+        super(employeeID, name);
+        this.contractDuration = contractDuration;
+        this.totalContractAmount = totalContractAmount;
+    }
+
+    // Getters and setters.
+    public int getContractDuration() {
+        return contractDuration;
+    }
+
+    public void setContractDuration(int contractDuration) {
+        this.contractDuration = contractDuration;
+    }
+
+    public double getTotalContractAmount() {
+        return totalContractAmount;
+    }
+
+    public void setTotalContractAmount(double totalContractAmount) {
+        this.totalContractAmount = totalContractAmount;
+    }
+
+    @Override
+    public String getEmployeeType() {
+        return "CONTRACTOR";
+    }
+
+    // Pay calculation mandated by Payable.
+    @Override
+    public double calculatePay() {
+        return totalContractAmount;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%s | Contract Duration: %d months | Contract Amount: $%.2f | Total Pay: $%.2f",
+                getBasicDetails(), contractDuration, totalContractAmount, calculatePay());
+    }
 }

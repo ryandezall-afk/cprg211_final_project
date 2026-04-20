@@ -1,20 +1,21 @@
 package sait.salaries.models;
-/**
- Interface: Payable
- Author: Ryan Dezall
- Date: April 9, 2026
- 
- Description: 
- 	This interface is a core component of the Salaries Management System, 
- 	designed to enforce payroll calculation rules. Inputs for this system include employee 
- 	details and specific payment metrics such as annual salaries, hourly wages, or contract flat rates. 
- 	The processing involves utilizing Object-Oriented principles, specifically polymorphism, to allow 
- 	different employee types to calculate their pay uniquely. The final output is the accurately calculated 
- 	monetary compensation for each specific worker. Specifically, this interface acts as a contract mandating that any implementing class must provide the mathematical logic for the calculatePay method.
- */
 
+/**
+ * Interface: Payable
+ * Author: Ryan Dezall
+ * Date: April 11, 2026
+ *
+ * Description:
+ * This interface is used in the Salaries Management System to enforce a common
+ * payroll contract for every employee type in the application. Inputs include
+ * employee-specific payment details such as annual salary, benefits bonus,
+ * hourly wage, hours worked, or a contract amount. The processing allows each
+ * subclass to calculate pay differently while still being handled through one
+ * shared type. The output is a calculated payment value that can be displayed
+ * in the CLI and stored consistently through the application.
+ */
 public interface Payable {
 
-	// Method signature required for all implementing classes
-	double calculatePay();
+    // Method required for all payable objects.
+    double calculatePay();
 }
